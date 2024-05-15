@@ -4,7 +4,7 @@
       <img
         alt="simbolo-unb"
         src="../../../assets/Icone-unbtv.svg"
-        class="h-10"
+        class="h-10 lg:h-20 2xl:h-40"
       />
     </div>
     <div
@@ -13,7 +13,7 @@
       "
     >
       <div class="flex flex-row items-center justify-center pl-3">
-        <ul class="flex flex-row gap-1 text-xs">
+        <ul class="flex flex-row gap-1 text-xs lg:text-sm 2xl:text-xl">
           <div *ngIf="getActualRoute() === '/stream'">
             <li class="font-bold text-[#00A550]">
               <a [routerLink]="['/stream']">Agora na TV</a>
@@ -70,7 +70,7 @@
       </div>
     </div>
   </nav>
-  <div class="flex-grow p-3 mt-28 mb-auto">
+  <div class="flex-grow p-3 mt-28 mb-auto lg:mt-40 2xl:mt-60">
     <ng-content></ng-content>
   </div>
   <footer
