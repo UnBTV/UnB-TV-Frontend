@@ -2,7 +2,9 @@
   <div class="flex justify-end p-2">
     <img src="../../../assets/share.png" alt="Share" (click)="shareVideo()" />
   </div>
-  <div class="relative w-full max-h-96 overflow-hidden aspect-video">
+  <div
+    class="relative w-full max-h-96 lg:max-h-[32rem] overflow-hidden aspect-video"
+  >
     <iframe
       id="embeddedVideo"
       title="{{ video.title }}"
@@ -12,12 +14,12 @@
   </div>
   <div class="flex justify-center flex-col gap-6 p-3 m-3">
     <div class="max-w-full justify-start max-h-full flex">
-      <h4 class="font-custom font-bold text-gray-800">
+      <h4 class="font-custom font-bold text-gray-800 text-base lg:text-2xl">
         {{ video.title }}
       </h4>
     </div>
     <div
-      class="max-w-full max-h-full flex text-[12px] font-custom text-gray-800"
+      class="max-w-full max-h-full flex text-[12px] lg:text-lg font-custom text-gray-800"
     >
       <div>
         <span
