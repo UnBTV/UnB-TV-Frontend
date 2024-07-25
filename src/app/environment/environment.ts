@@ -4,6 +4,6 @@ export const environment = {
   // usersAPIURL: process.env["usersAPIURL"],
   usersAPIURL: "https://unbtv.vercel.app/api",
   // adminAPIURL: process.env["adminAPIURL"],
-  adminAPIURL: "https://unbtv-adminservice.vercel.app",
+  adminAPIURL: "https://unbtv-adminservice.vercel.app/api",
   EDUPLAY_CLIENT_KEY: process.env["EDUPLAY_CLIENT_KEY"] as string,
 };
