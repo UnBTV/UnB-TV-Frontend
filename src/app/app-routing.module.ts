@@ -27,7 +27,9 @@ const routes: Routes = [
   { path: '', component: LoginComponent, canActivate: [WithTokenGuard] },
   { path: 'stream', component: StreamViewComponent },
   { path: 'catalog', component: CatalogComponent },
-  { path: 'videos', component: VideoComponent },
+  { path: 'videos', redirectTo: 'catalog', pathMatch: 'full' },
+  { path: 'videos/:tagVideo', component: VideoComponent },
+  { path: 'video', redirectTo: 'catalog', pathMatch: 'full' },
   { path: 'video/:idVideo', component: VideoViewerComponent },
   { path: 'login', component: LoginComponent, canActivate: [WithTokenGuard] },
   {
@@ -49,11 +51,6 @@ const routes: Routes = [
     path: 'changePassword',
     component: ResetPasswordComponent,
     canActivate: [WithTokenGuard],
-  },
-  {
-    path: 'video/:idVideo',
-    component: VideoViewerComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'activeAccount',
