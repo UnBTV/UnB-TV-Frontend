@@ -2,7 +2,7 @@
   class="center flex justify-center content-start flex-wrap gap-2 w-full h-full max-w-3xl"
 >
   <div
-    *ngIf="unbTvVideos.length === 0"
+    *ngIf="videosToShow.length === 0"
     class="w-full h-full flex flex-col justify-center items-center gap-2 p-[10%] m-0"
   >
     <h6 class="text-grey-brand text-[13px]">
@@ -17,7 +17,7 @@
     </button>
   </div>
 
-  <div *ngFor="let video of unbTvVideos" class="flex">
+  <div *ngFor="let video of videosToShow" class="flex">
     <div>
       <div
         *ngFor="let image of video.images"
