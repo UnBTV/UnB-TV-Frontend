@@ -51,11 +51,6 @@ const routes: Routes = [
     canActivate: [WithTokenGuard],
   },
   {
-    path: 'video/:idVideo',
-    component: VideoViewerComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'activeAccount',
     component: ActiveAccountComponent,
     canActivate: [WithTokenGuard],
