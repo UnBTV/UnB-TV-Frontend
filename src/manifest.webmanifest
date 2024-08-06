@@ -56,6 +56,5 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
-  ],
-  "display_override": ["window-controls-overlay", "fullscreen"]
+  ]
 }
