@@ -55,6 +55,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/splash_art.png",
+      "sizes": "900x1600",
+      "type": "image/png",
+      "purpose": "maskable any"
     }
   ]
 }
