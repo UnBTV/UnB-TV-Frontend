@@ -118,12 +118,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '254484469180-1imr4ds36p8rq4fe7udkja212tu0p7jl.apps.googleusercontent.com'
+              '630707499443-bnp6f3cb2ncb1clerojodfaatj8f88s4.apps.googleusercontent.com'
             )
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('2640880742734858')
+            provider: new FacebookLoginProvider('1655507471960551')
           }
         ],
         onError: (err) => {
