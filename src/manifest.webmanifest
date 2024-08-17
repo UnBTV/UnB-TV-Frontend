@@ -57,7 +57,7 @@
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/splash_art.svg",
+      "src": "assets/icons/splash.png",
       "sizes": "900x1600",
       "type": "image/png",
       "purpose": "maskable any"
