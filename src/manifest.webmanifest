@@ -58,7 +58,7 @@
     },
     {
       "src": "assets/icons/splash.png",
-      "sizes": "900x1600",
+      "sizes": "1080x1080",
       "type": "image/png",
       "purpose": "maskable any"
     }
