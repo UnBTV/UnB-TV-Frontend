@@ -203,7 +203,7 @@ export class VideoComponent implements OnInit {
     ];
 
     videos.forEach((video) => {
-      const keywordsTitle = video?.title?.toLowerCase() ?? '';
+      const keywordsTitle = video?.keywords?.toLowerCase() ?? '';
 
       if (keywordsTitle) {
         const category = keywordsCategories.find((config) =>
