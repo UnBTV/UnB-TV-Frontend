@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import jwt_decode from 'jwt-decode';
 import { AlertService } from 'src/app/services/alert.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { take, timer } from 'rxjs';
+import {Profile} from 'src/app/services/profile.service'
 
 type ErrorResponseType = HttpErrorResponse;
 
@@ -20,6 +21,8 @@ export class ProfileComponent {
   user: any;
   userId: any;
   connection: string = '';
+  canShowAdminButton: boolean = false;
+
 
   constructor(
     private router: Router,
@@ -27,12 +30,14 @@ export class ProfileComponent {
     private userService: UserService,
     private alertService: AlertService,
     private confirmationService: ConfirmationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private profileService: Profile
   ) {}
 
   ngOnInit(): void {
     this.setUserIdFromToken(localStorage.getItem('token') as string);
     this.getUser();
+    this.canShowAdminButton = this.profileService.canShowAdministracaoBtn();
     timer(15 * 60 * 1000)
     .pipe(take(1))
     .subscribe(() => {
@@ -69,6 +74,10 @@ export class ProfileComponent {
       },
       reject: () => {},
     });
+  }
+
+  acessoAdmin(){
+    this.router.navigate(['/homeAdmin']);
   }
 
   deleteUser() {

@@ -25,7 +25,7 @@ export class ActiveAccountComponent implements OnInit {
   ngOnInit(): void {
     this.userForm = this.fb.group({
       email: ["", [Validators.required]],
-      code: [, [Validators.required]],
+      code: [undefined, [Validators.required]],
     });
   }
 
@@ -70,5 +70,9 @@ export class ActiveAccountComponent implements OnInit {
 
   navigator(rota: string): void {
     this.router.navigate([rota]);
+  }
+
+  dummyKeyDown(event: KeyboardEvent): void {
+    // Não faz nada
   }
 }

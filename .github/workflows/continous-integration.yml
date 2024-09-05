@@ -5,6 +5,7 @@ on: push
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
+    environment: actions
 
     steps:
       - name: Checkout ✅
@@ -19,12 +20,15 @@ jobs:
       - name: Install ⚙️
         run: npm install
 
+      - name: Install Junit
+        run: npm install --save-dev karma-junit-reporter
+
       - name: Build 🛠
         run: npm run build
 
       - name: Test 📋
         run: npm run test:prod
-
+          
       - name: Executa SonarCloud Scan
         if: ${{ always() }}
         uses: SonarSource/sonarcloud-github-action@master
