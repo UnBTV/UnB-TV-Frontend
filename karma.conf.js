@@ -12,6 +12,10 @@ module.exports = function (config) {
           '--headless',
           '--remote-debugging-port=9222'
         ]
+      },
+      ChromeHeadlessCI: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
       }
     },
     basePath: '',
@@ -21,6 +25,7 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
+      require('karma-junit-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -46,8 +51,15 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
-    reporters: ['progress', 'kjhtml'],
-    browsers: ['Chrome'],
+    junitReporter: {
+      outputDir: 'test-reports', // results will be saved as $outputDir/$browserName.xml
+      outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile
+      useBrowserName: false, // add browser name to report and classes names
+      suite: '', // suite will become the package name attribute in xml testsuite element
+      properties: {} // key value pair of properties to add to the <properties> section of the report
+    },
+    reporters: ['progress', 'kjhtml', 'junit'],
+    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessCI'],
     restartOnFileChange: true
   });
 };

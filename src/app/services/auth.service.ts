@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environment/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -57,5 +57,13 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/loginsocial']);
+  }
+
+  setupAdmin(data: any): Observable<any> {
+    return this.http.post(`${this.usersAPIURL}/auth/admin-setup`, data);
+  }
+
+  super_admin_setup(data: any): Observable<any> {
+    return this.http.post(`${this.usersAPIURL}/auth/super-admin-setup`, data);
   }
 }
