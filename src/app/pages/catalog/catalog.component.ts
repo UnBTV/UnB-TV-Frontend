@@ -6,6 +6,7 @@ import { IVideo } from 'src/shared/model/video.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import jwt_decode from 'jwt-decode';
+import { UNB_TV_CHANNEL_ID } from 'src/app/app.constant';
 
 @Component({
   selector: 'app-catalog',
