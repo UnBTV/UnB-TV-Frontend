@@ -5,7 +5,7 @@
 
 ## Sobre
 
-O projeto visa o desenvolvimento de uma aplicação Web e Mobile para a UnB-TV, com o objetivo de centralizar e disponibilizar de forma unificada todo o conteúdo oferecido pela UnB-TV, incluindo vídeos e transmissões ao vivo, sendo desenvolvida no segundo semestre de 2023 pelas disciplinas de EPS e MDS da Universidade de Brasília.
+O projeto visa o desenvolvimento de uma aplicação Web e Mobile para a UnB-TV, com o objetivo de centralizar e disponibilizar de forma unificada todo o conteúdo oferecido pela UnB-TV,  incluindo vídeos e transmissões ao vivo, sendo desenvolvida no segundo semestre de 2023 pelas disciplinas de EPS e MDS da Universidade de Brasília.
 
 ## Ambientes
 
