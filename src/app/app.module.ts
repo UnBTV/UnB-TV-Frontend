@@ -11,11 +11,11 @@ import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
-import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
-
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from '../app/environment/environment';
 
 // Declaration
+import {CommonModule} from '@angular/common';
 import { NgModule, isDevMode } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -46,6 +46,20 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-go
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { NgChartsModule } from 'ng2-charts';
+import { HomeAdminComponent } from './pages/home-admin/home-admin.component';
+
+import { CategoryTableComponent } from './pages/category-table/category-table.component';
+import { VideoViewsComponent } from './pages/video-views/video-views.component';
+import { DashboardCategoryComponent } from './pages/dashboard-category/dashboard-category.component';
+import { RecordComponent } from './pages/record/record.component';
+import { RecommendationVideosComponent } from './pages/recommendation-videos/recommendation-videos.component';
+import { YourUnBTVComponent } from './pages/your-unbtv/your-unbtv.component';
+import { FavoriteVideosComponent } from './pages/favorite-videos/favorite-videos.component';
+import { WatchLaterVideosComponent } from './pages/watchlater-videos/watchlater-videos.component';
+import { ControleSuperAdminComponent } from './pages/controle-super-admin/controle-super-admin.component';
+
+// import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 @NgModule({
   imports: [
@@ -72,9 +86,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    NgChartsModule,
+    CommonModule,
   ],
-
   declarations: [
     AppComponent,
     LoginComponent,
@@ -96,7 +111,18 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     GridDaysComponent,
     VideoCommentComponent,
     CatalogComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    HomeAdminComponent,
+    CategoryTableComponent,
+    VideoViewsComponent,
+    DashboardCategoryComponent,
+    RecordComponent,
+    RecommendationVideosComponent,
+    YourUnBTVComponent,
+    FavoriteVideosComponent,
+    WatchLaterVideosComponent,
+//    NotificationsComponent,
+    ControleSuperAdminComponent
   ],
 
   providers: [
@@ -118,7 +144,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '630707499443-bnp6f3cb2ncb1clerojodfaatj8f88s4.apps.googleusercontent.com'
+              environment.googleClientId
             )
           },
           {

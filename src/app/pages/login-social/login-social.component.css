@@ -6,16 +6,21 @@
   font-style: normal;
 }
 
+html, body {
+  height: 100%;
+  margin: 0; 
+  padding: 0; 
+}
+
+
 .container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   max-width: 360px;
-  margin-right: auto; 
-  margin-left: auto; 
-  height: 100%;
+  margin: 0 auto;
+  height: auto;
+  align-items: center;
+  flex-direction: column;
 }
 
 .google-button {
@@ -25,28 +30,22 @@
   padding: 10px 20px;
   border-color: black;
   width: 260px;
-  height: 30px;
-  top: 210px;
-  left: 50px;
-  margin: 5px;
+  height: 40px; 
+  margin: 10px 0; 
   border: 0.15px solid #3C3C3B; 
   border-radius: 9px;
   line-height: 10px;
   font-weight: 400;
   font-size: 13px;
   background-image: url('../../../assets/google.png');
-  background-position: center;
   background-size: 7% auto;
   background-repeat: no-repeat;
   background-position: 220px 6px;
-  margin-bottom: 10.5px;
-
 }
 
-
+/*
 .facebook-button {
   text-align: center;
-  background-color: white;
   color:  black;
   padding: 10px 20px;
   border-color: black;
@@ -60,14 +59,12 @@
   border-radius: 5px;
   line-height: 10px;
   background-image: url('../../../assets/facebook-icon-white-png.png');
-  background-position: center;
   background-size: 8% auto;
   background-repeat: no-repeat;
   background-position: 12px 9px;
   margin-bottom: 10.5px;
   margin-top: 19.5px;
   background-color: #1877F2;
-  
 }
 
 
@@ -78,11 +75,10 @@
   font-family: Helvetic ,sans-serif;
   font-size: 14px;
   color: white;
-  
-  
 }
+*/
 
-.email-button{
+.email-button {
   text-align: center;
   background-color: white;
   color: #969696;
@@ -90,24 +86,18 @@
   border-color: black;
   width: 260px;
   height: 40px;
-  top: 210px;
-  left: 50px;
-  margin: 5px;
+  margin: 10px 0; 
   border: 1px solid #DADCE0;
   border-radius: 5px;
   line-height: 10px;
   font-weight: 400;
-  margin-top: 10px;
-  margin-bottom: 18.5px;
   background-image: url('../../../assets/email-svgrepo-com.svg');
-  background-position: center;
   background-size: 8% auto;
   background-repeat: no-repeat;
   background-position: 12px 9px;
-
 }
 
-.email-button span{
+.email-button span {
   position: relative;
   margin-left: -5px;
   font-size: 14px;
@@ -115,7 +105,7 @@
 
 .cadastro {
   font-size: 13px;
+  text-align: center; 
   color: #0087C8;
-  margin-left: -72px;
-  margin-top: 18.5px
+  margin-top: 20px; 
 }

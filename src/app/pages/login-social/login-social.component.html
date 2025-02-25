@@ -1,7 +1,7 @@
 <div class="container">
   <div
     id="g_id_onload"
-    data-client_id="630707499443-bnp6f3cb2ncb1clerojodfaatj8f88s4.apps.googleusercontent.com"
+    [attr.data-client_id]="googleId"
     data-callback="handleCredentialResponse"
   ></div>
   <div
@@ -16,9 +16,11 @@
   ></div>
 
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <!--
   <button (click)="signInWithFB()" class="facebook-button">
     <span>Continuar com o Facebook</span>
   </button>
+  -->
   <button [routerLink]="['/login']" class="email-button">
     <span>Continuar com e-mail</span>
   </button>

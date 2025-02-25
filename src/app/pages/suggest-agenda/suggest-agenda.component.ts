@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { EmailService } from 'src/app/services/email.service';
 import { EmailData } from 'src/shared/model/email.model';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
@@ -28,11 +28,35 @@ export class SuggestAgendaComponent implements OnInit {
       quando: [''],
       local: [''],
       responsavel: ['', [Validators.required]],
-      telefoneResponsavel: ['', [Validators.required]],
+      telefoneResponsavel: ['', [this.validacaoTelefone()]],
       emailContato: ['', [Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
+      urlVideo: ['', [this.validacaoUrl()]]
     },
     );
   }
+
+  validacaoTelefone(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (control.value == '') {
+        return null;
+      }
+      const padrao_telefone = /^\d{8,15}$/;
+      const valido = padrao_telefone.test(control.value);
+      return valido ? null : { telefone_invalido: { value: control.value } };
+    }
+  }
+
+  validacaoUrl(): ValidatorFn{
+    return (control:AbstractControl):{[key: string]:any}| null => {
+      if(control.value == ''){
+        return null;
+      }
+      const padrao_url = /^(https:\/\/(?:www\.)?(youtube\.com|youtu\.be|drive\.google\.com|stream\.microsoft\.com|streamable\.com|vimeo\.com)\/.+)$/;
+      const valido = padrao_url.test(control.value);
+      return valido ? null : {url_invalida:{value:control.value}};
+    }
+  }
+
 
   sendSuggestAgenda(): void {
     if (this.suggestAgendaForm.valid) {
@@ -44,7 +68,8 @@ export class SuggestAgendaComponent implements OnInit {
       emailData.responsavel = this.suggestAgendaForm.value.responsavel;
       emailData.telefone_responsavel = this.suggestAgendaForm.value.telefoneResponsavel;
       emailData.email_contato = this.suggestAgendaForm.value.emailContato;
-      const emailUnB = 'unbtv@unb.br';
+      emailData.url_video = this.suggestAgendaForm.value.urlVideo;
+      const emailUnB = 'unbtv20241@gmail.com';
       emailData.recipients = [emailUnB];
       this.isSendingEmail = true;
       this.emailService.sendEmail(emailData).subscribe((res: HttpResponse<string>) => {
@@ -56,8 +81,12 @@ export class SuggestAgendaComponent implements OnInit {
         () => {
           this.isSendingEmail = false;
         });
-    } else {
+    } else if(this.suggestAgendaForm.controls['telefoneResponsavel'].errors?.['telefone_invalido']) {
+      this.alertService.showMessage("error", "Erro", "Telefone inválido.");
+    } else if(this.suggestAgendaForm.controls['urlVideo'].errors?.['url_invalida']) {
+      this.alertService.showMessage("error", "Erro", "Serviços válidos: Youtube, Google Drive, Microsoft Stream, Streamable e Vimeo.");
+    }else{
       this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
-    }
+  }
   }
 }
