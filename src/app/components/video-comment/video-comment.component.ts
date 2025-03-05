@@ -64,7 +64,6 @@ export class VideoCommentComponent implements OnInit {
   setUserIdFromToken(token: string) {
     const decodedToken: any = jwt_decode(token);
     this.userId = decodedToken.id;
-    // console.log(this.userId);
   }
 
   getUserName(userId: number) {
@@ -113,5 +112,8 @@ export class VideoCommentComponent implements OnInit {
     this.showComments = !this.showComments;
   }
 
+  dummyKeyDown(event: KeyboardEvent): void {
+    // Não faz nada
+  }
 }
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { SocialAuthService, SocialUser, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-declare var gapi: any;
+import { environment } from 'src/app/environment/environment';
+declare let gapi: any;
 
 interface ServerResponse {
   access_token: string;
@@ -35,6 +35,7 @@ declare global {
 export class LoginSocialComponent implements OnInit {
   private user: SocialUser | null = null;
   private loggedIn: boolean = false;
+  public googleId = environment.googleClientId;
 
   constructor(
     private authService: SocialAuthService,
@@ -69,7 +70,7 @@ export class LoginSocialComponent implements OnInit {
 
     this.sendUserDataToServer(user);
   }
-
+/*
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((user) => {
       if (user) {
@@ -77,7 +78,7 @@ export class LoginSocialComponent implements OnInit {
       }
     });
   }
-
+*/
   signOut(): void {
     this.authService.signOut();
   }
@@ -92,7 +93,7 @@ export class LoginSocialComponent implements OnInit {
       (response) => {
         console.log('Resposta do servidor:', response);
 
-        if (response && response.access_token) {
+        if (response?.access_token) {
           localStorage.setItem('token', response.access_token);
 
           if (response.is_new_user) {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MustMatch } from 'src/app/helper/must-match.validator';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -55,5 +54,9 @@ export class LoginComponent implements OnInit {
 
   navigator(rota: string): void {
     this.router.navigate([rota]);
+  }
+
+  dummyKeyDown(event: KeyboardEvent): void {
+    // Não faz nada
   }
 }

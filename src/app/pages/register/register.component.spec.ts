@@ -11,37 +11,34 @@ import { UserService } from 'src/app/services/user.service';
 import { DropdownModule } from 'primeng/dropdown';
 
 const mockData: any = {
-  "name": "Mario",
-  "email": "mario@gmail.com",
-  "connection": "ALUNO",
-  "password": "123456",
-  "confirmPassword": "123456",
-}
+  name: "Mario",
+  email: "mario@gmail.com",
+  connection: { name: "ALUNO" },
+  password: "123456",
+  confirmPassword: "123456",
+};
 
 const mockDataError: any = {
-  "name": "Mario",
-  "email": "",
-  "connection": "ALUNO",
-  "password": "123456",
-  "confirmPassword": "123456",
-}
+  name: "Mario",
+  email: "",
+  connection: { name: "ALUNO" },
+  password: "123456",
+  confirmPassword: "123456",
+};
 
 class AuthServiceMock {
-  constructor() { }
   registerUser() {
     return of({ success: true });
   }
 }
 
 class UserServiceMock {
-  constructor() { }
   getVinculo() {
-    return of({ success: true });
+    return of(['ALUNO', 'PROFESSOR']);
   }
 }
 
 class AlertServiceMock {
-  constructor() { }
   showMessage() {
     return of({ success: true });
   }
@@ -59,12 +56,11 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ReactiveFormsModule, DropdownModule,
-        RouterTestingModule.withRoutes(
-          [
-            { path: 'activateAccount', component: ActiveAccountComponent },
-          ]
-        )
+      imports: [
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        DropdownModule,
+        RouterTestingModule.withRoutes([{ path: 'activateAccount', component: ActiveAccountComponent }])
       ],
       providers: [
         { provide: UserService, useValue: new UserServiceMock() },
@@ -72,9 +68,8 @@ describe('RegisterComponent', () => {
         { provide: AlertService, useValue: new AlertServiceMock() },
         FormBuilder,
       ],
-      declarations: [RegisterComponent]
-    })
-      .compileComponents();
+      declarations: [RegisterComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
@@ -100,9 +95,7 @@ describe('RegisterComponent', () => {
     const form = component.userForm;
     form.setValue(mockData);
 
-    const submitButton = fixture.nativeElement.querySelector(
-      'button[type="submit"]'
-    );
+    const submitButton = fixture.nativeElement.querySelector('button[type="submit"]');
     submitButton.click();
 
     expect(component.register).toHaveBeenCalled();
@@ -114,7 +107,6 @@ describe('RegisterComponent', () => {
     const form = component.userForm;
     form.setValue(mockDataError);
     const alertSpy = spyOn(alertService, 'showMessage').and.callThrough();
-    const mySpy = spyOn(authService, 'registerUser').and.returnValue(of({ success: true }));
     component.register();
     expect(alertSpy).toHaveBeenCalled();
   });
@@ -135,4 +127,10 @@ describe('RegisterComponent', () => {
     expect(mySpy).toHaveBeenCalled();
   });
 
+  it('should get vinculo from userService', () => {
+    const mockVinculo = ['ALUNO', 'PROFESSOR'];
+    spyOn(userService, 'getVinculo').and.returnValue(of(mockVinculo));
+    component.getVinculo();
+    expect(component.vinculo).toEqual([{ name: 'ALUNO' }, { name: 'PROFESSOR' }]);
+  });
 });
